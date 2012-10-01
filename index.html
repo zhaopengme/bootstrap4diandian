@@ -1,0 +1,769 @@
+<script type="server/javascript">
+    if (dian.request.action === 'latestpost.html'){
+        require('dd://assets/2012/0718/180307hJcO/latestpost.coffee').latest({layout:"ul",each:"li",length:"30"});
+        return;
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>
+    <? require('dd://assets/2012/0713/181755Gh6M/seotitle.coffee').title(" - "," | ", 20,"没有找到文章哦")?>
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{$meta.description|nohtml}">
+  <meta name="keywords" content="{$meta.keywords|nohtml}">
+  {$meta.syntaxhighlighter}
+  <link href="{$meta.rss}" rel="alternate" title="订阅{$global.name|nohtml}" type="application/rss+xml">
+  <link rel="apple-touch-icon" href="{$meta.mobile_icon}">
+  <link rel="stylesheet" href="http://t.libdd.com/css/base/rich-content.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-responsive.css">
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="navbar navbar-fixed-top navbar-inverse" id="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        {?pages}
+        <ul class="nav">
+          <li>
+            <a href="{$global.url}" title="{$global.description|nohtml}"> 
+              <i class="icon-home icon-white"></i>
+              首页
+            </a>
+          </li>
+          {?loop:pages}
+          <li>
+            <a href="{$page.url}" title={$page.title|nohtml}"">{$page.title}</a>
+          </li>
+          {/loop:pages}
+          <li >
+            <a href="{$global.archive_url}" title="存档">存档</a>
+          </li>
+        </ul>
+        <form class="navbar-search" action="/">
+          <input type="text" name="q" class="search-query span2" placeholder="Search"></form>
+        <ul class="nav pull-right">
+          {?inbox}
+          <li>
+            <a href="{$inbox.url}" title="{$inbox.title|nohtml}"><i class="icon-comment icon-white"></i> {$inbox.title}</a>
+          </li>
+          {/inbox}
+          {?contribute}
+          <li>
+            <a href="{$contribute.url}" title="{$contribute.title|nohtml}">{$contribute.title}</a>
+          </li>
+          {/contribute}
+          <li>
+            <a href="http://weibo.com/523419490" title="微博">微博</a>
+          </li>
+          <li>
+            <a href="{$meta.rss}" title="RSS订阅">RSS</a>
+          </li>
+        </ul>
+        {/pages}
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row" id="header">
+    <div class="span8">
+      <h2>
+        <a href="{$global.url}" title="{$global.description|nohtml}">
+          {$global.name}
+        </a>
+      </h2>
+      <h4>{$global.description}</h4>
+    </div>
+    <div class="span4"></div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <br>
+      <ul class="breadcrumb">
+        <li><a href="/" title="{$global.name|nohtml}<">首页</a> <span class="divider">/</span></li>
+        {?view.list}
+        <li>{$global.name}</li>        
+        {/view.list}
+        {?view.post}
+        {?posts}
+        {?loop:posts}
+        <li>{?post.video}{$video.description|nohtml_truncate:"16":"..."}{/post.video}
+          {?post.text}{?$text.title}{$text.title}{/$text.title}{?!$text.title}{$text.summary|nohtml_truncate:"16":"..."}{/!$text.title}{/post.text}
+          {?post.audio}{$audio.song}-{$audio.artist}{/post.audio}
+          {?post.photo}{?$photos.title}{$photos.title}{/$photos.title}{?!$photos.title}{?$photos.description}{$photos.description|nohtml_truncate:"16":"..."}{/$photos.description}{?!$photos.description}欣赏最新图片集{/!$photos.description}{/!$photos.title}{/post.photo}
+          {?post.link}{?$link.title}{$link.title}{/$link.title}{?!$link.title}{?$link.description}{$link.description|nohtml_truncate:"16":"..."}{/$link.description}{?!$link.description}{$link.url|truncate:"16":"..."}{/!$link.description}{/!$link.title}{/post.link}</li>
+          {/loop:posts}
+          {/posts}    
+        {/view.post}
+      </ul>
+    </div>
+  </div>  
+  <div class="row">
+    <div class="span8" id="content">
+        {?view.list}
+          {?!posts}
+            <div class="entry-container text">
+              <h3>找不到相关结果</h3>
+            </div>
+          {/!posts}
+        {/view.list}  
+        {?posts}
+        {?loop:posts}
+
+        <!-- TEXT -->
+        {?post.text}
+        <div class="post">
+          {?view.list}
+          <div class="row">
+            <div class="span7">
+              <h2>
+                <a href="{$post.url}" title="{$text.title|nohtml}">{$text.title}</a>
+              </h2>
+              <p>
+                <h6>
+                  {$post.date} ⁄被围观 {$post.notes_count}+
+                </h6>
+              </p>
+            </div>
+            <div class="span1">
+              <span class="badge pull-right">{$post.like_count}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span2">
+              <a href="{$post.url}" class="thumbnail" title="{$text.title|nohtml}">
+                {?text.thumbnail}
+                <img src="{$text.thumbnail.250.src}" >
+                {/text.thumbnail}
+                {?!text.thumbnail}
+                <img src="/img/160x120.gif">
+                {/!text.thumbnail}
+              </a>
+            </div>
+            <div class="span6 post-content">
+              <p>{$text.summary|nohtml}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span6">
+              {?post.tag}
+              <p>
+                <h6> <i class="icon-tags"></i>
+                  {?loop:post.tags}
+                  <a href="{$post.tag.url}" title="{$post.tag.name|nohtml}"> {$post.tag.name} </a> 
+                  {/loop:post.tags}
+                </h6>
+              </p>
+              {/post.tag}
+            </div>
+            <div class="span2 read-more">
+              <a class="btn btn-primary pull-right" href="{$post.url}" title="{$text.title|nohtml}">阅读全文&raquo;</a>
+            </div>
+          </div>
+          <hr />
+        {/view.list}
+
+
+          {?view.post}
+          <div class="row">
+            <div class="span7">
+              <h2>
+                <a href="{$post.url}" title="{$text.title|nohtml}">{$text.title}</a>
+              </h2>
+              <p>
+                <h6>
+                  {$post.date} ⁄被围观 {$post.notes_count}+
+                </h6>
+              </p>
+            </div>
+            <div class="span1">
+              <span class="badge pull-right">{$post.like_count}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              <p>{$text.content}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span6">
+              {?post.tag}
+              <p>
+                <h6> <i class="icon-tags"></i>
+                  {?loop:post.tags}
+                  <a href="{$post.tag.url}" title="{$post.tag.name|nohtml}"> {$post.tag.name} </a> 
+                  {/loop:post.tags}
+                </h6>
+              </p>
+              {/post.tag}
+            </div>
+            <div class="span2">
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              {$post.notes}
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              <? require('dd://assets/2012/0920/1611415Cc6/wumii.coffee').wumii({num:"5",mode:"3",title_length:"30"}) ?>
+            </div>
+          </div>
+        {/view.post}
+        </div>
+        {/post.text}
+        <!-- /TEXT -->
+
+        <!-- PHOTO -->
+        {?post.photo}
+        <div class="post">
+          {?view.list}
+          <div class="row">
+            <div class="span7">
+              <h2>
+                <a href="{$post.url}" title="{$photos.title|nohtml}">{$photos.title}</a>
+              </h2>
+              <p>
+                <h6>
+                  {$post.date} ⁄被围观 {$post.notes_count}+
+                </h6>
+              </p>
+            </div>
+            <div class="span1">
+              <span class="badge pull-right">{$post.like_count}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span2">
+              <a href="{$post.url}" class="thumbnail" title="{$photos.title|nohtml}">
+                {?photos.single}
+                {?loop:photos}
+                <img src="{$photo.250.src}" >
+                {/loop:photos}
+                {/photos.single}
+
+                {?photos.multi}
+                {?loop:photos}
+                {?photos@first}
+                <img src="{$photo.250.src}" >
+                {/photos@first}
+                {/loop:photos}
+                {/photos.multi}
+              </a>
+            </div>
+            <div class="span6 post-content">
+              <p>{$photos.description}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span6">
+              {?post.tag}
+              <p>
+                <h6> <i class="icon-tags"></i>
+                  {?loop:post.tags}
+                  <a href="{$post.tag.url}" title="{$post.tag.name|nohtml}"> {$post.tag.name} </a> 
+                  {/loop:post.tags}
+                </h6>
+              </p>
+              {/post.tag}
+            </div>
+            <div class="span2 read-more">
+              <a class="btn btn-primary pull-right" href="{$post.url}" title="{$photos.title|nohtml}">阅读全文&raquo;</a>
+            </div>
+          </div>
+          <hr />
+        {/view.list}
+
+
+          {?view.post}
+          <div class="row">
+            <div class="span7">
+              <h2>
+                <a href="{$post.url}" title="{$photos.title|nohtml}">{$photos.title}</a>
+              </h2>
+              <p>
+                <h6>
+                  {$post.date} ⁄被围观 {$post.notes_count}+
+                </h6>
+              </p>
+            </div>
+            <div class="span1">
+              <span class="badge pull-right">{$post.like_count}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8 post-content">
+              <div>
+                <p>
+                  {$photos.description}
+                </p>
+                {?photos.single}
+                {?loop:photos}
+                <p>
+                  <img src="{$photo.800.src}" alt="">
+                </p>
+                {$photo.description}
+                {/loop:photos}
+                {/photos.single}
+
+                {?photos.multi}
+                {?loop:photos}
+                <p>
+                  <img src="{$photo.800.src}" alt="">
+                </p>
+                {$photo.description}
+                {/loop:photos}
+                {/photos.multi}
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span6">
+              {?post.tag}
+              <p>
+                <h6> <i class="icon-tags"></i>
+                  {?loop:post.tags}
+                  <a href="{$post.tag.url}" title="{$post.tag.name|nohtml}"> {$post.tag.name} </a> 
+                  {/loop:post.tags}
+                </h6>
+              </p>
+              {/post.tag}
+            </div>
+            <div class="span2">
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              {$post.notes}
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              <? require('dd://assets/2012/0920/1611415Cc6/wumii.coffee').wumii({num:"5",mode:"3",title_length:"30"}) ?>
+            </div>
+          </div>
+        {/view.post}
+        </div>
+        {/post.photo}
+        <!-- /PHOTO -->
+
+        <!-- LINK -->
+        {?post.link}
+        <div class="post">
+          {?view.list}
+          <div class="row">
+            <div class="span7">
+              <h2>
+                <a href="{$post.url}" title="{$link.title|nohtml}">{$link.title}</a>
+              </h2>
+              <p>
+                <h6>
+                  {$post.date} ⁄被围观 {$post.notes_count}+
+                </h6>
+              </p>
+            </div>
+            <div class="span1">
+              <span class="badge pull-right">{$post.like_count}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span2">
+              <a href="{$post.url}" class="thumbnail" title="{$link.title|nohtml}">
+                <img src="/img/160x120.gif">
+              </a>
+            </div>
+            <div class="span6 post-content">
+              <p>
+                <a href="{$link.url}" title="{$link.description|nohtml}">{$link.title}</a>
+              </p>
+              <p>{$link.description}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span6">
+              {?post.tag}
+              <p>
+                <h6> <i class="icon-tags"></i>
+                  {?loop:post.tags}
+                  <a href="{$post.tag.url}" title="{$post.tag.name|nohtml}"> {$post.tag.name} </a> 
+                  {/loop:post.tags}
+                </h6>
+              </p>
+              {/post.tag}
+            </div>
+            <div class="span2 read-more">
+              <a class="btn btn-primary pull-right" href="{$post.url}" title="{$link.title|nohtml}">阅读全文&raquo;</a>
+            </div>
+          </div>
+          <hr />
+        {/view.list}
+
+
+          {?view.post}
+          <div class="row">
+            <div class="span7">
+              <h2>
+                <a href="{$post.url}" title="{$link.title|nohtml}">{$link.title}</a>
+              </h2>
+              <p>
+                <h6>
+                  {$post.date} ⁄被围观 {$post.notes_count}+
+                </h6>
+              </p>
+            </div>
+            <div class="span1">
+              <span class="badge pull-right">{$post.like_count}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              <p>
+                <a href="{$link.url}" title="{$link.description|nohtml}">{$link.title}</a>
+              </p>
+              <p>{$link.description}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span6">
+              {?post.tag}
+              <p>
+                <h6> <i class="icon-tags"></i>
+                  {?loop:post.tags}
+                  <a href="{$post.tag.url}" title="{$post.tag.name|nohtml}"> {$post.tag.name} </a> 
+                  {/loop:post.tags}
+                </h6>
+              </p>
+              {/post.tag}
+            </div>
+            <div class="span2">
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              {$post.notes}
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              <? require('dd://assets/2012/0920/1611415Cc6/wumii.coffee').wumii({num:"5",mode:"3",title_length:"30"}) ?>
+            </div>
+          </div>
+        {/view.post}
+        </div>
+        {/post.link}
+        <!-- /LINK -->
+
+       <!-- AUDIO -->
+        {?post.audio}
+        <div class="post">
+          {?view.list}
+          <div class="row">
+            <div class="span7">
+              <h2>
+                <a href="{$post.url}" title="{$audio.song|nohtml}">{$audio.song}</a>
+              </h2>
+              <p>
+                <h6>
+                  {$post.date} ⁄被围观 {$post.notes_count}+
+                </h6>
+              </p>
+            </div>
+            <div class="span1">
+              <span class="badge pull-right">{$post.like_count}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span2">
+              <a href="{$post.url}" class="thumbnail" title="{$audio.description|nohtml}">
+                <img src="{$audio.cover_185}">
+              </a>
+            </div>
+            <div class="span6 post-content">
+              <p>
+                {$audio.player}
+              </p>
+              <p>{$audio.description}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span6">
+              {?post.tag}
+              <p>
+                <h6> <i class="icon-tags"></i>
+                  {?loop:post.tags}
+                  <a href="{$post.tag.url}" title="{$post.tag.name|nohtml}"> {$post.tag.name} </a> 
+                  {/loop:post.tags}
+                </h6>
+              </p>
+              {/post.tag}
+            </div>
+            <div class="span2 read-more">
+              <a class="btn btn-primary pull-right" href="{$post.url}" title="{$audio.description|nohtml}">阅读全文&raquo;</a>
+            </div>
+          </div>
+          <hr />
+        {/view.list}
+
+
+          {?view.post}
+          <div class="row">
+            <div class="span7">
+              <h2>
+                <a href="{$post.url}" title="{$audio.song|nohtml}">{$audio.song}</a>
+              </h2>
+              <p>
+                <h6>
+                  {$post.date} ⁄被围观 {$post.notes_count}+
+                </h6>
+              </p>
+            </div>
+            <div class="span1">
+              <span class="badge pull-right">{$post.like_count}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              <p>
+                {$audio.player}
+              </p>
+              <p>{$audio.description}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span6">
+              {?post.tag}
+              <p>
+                <h6> <i class="icon-tags"></i>
+                  {?loop:post.tags}
+                  <a href="{$post.tag.url}" title="{$post.tag.name|nohtml}"> {$post.tag.name} </a> 
+                  {/loop:post.tags}
+                </h6>
+              </p>
+              {/post.tag}
+            </div>
+            <div class="span2">
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              {$post.notes}
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              <? require('dd://assets/2012/0920/1611415Cc6/wumii.coffee').wumii({num:"5",mode:"3",title_length:"30"}) ?>
+            </div>
+          </div>
+        {/view.post}
+        </div>
+        {/post.audio}
+        <!-- /AUDIO -->
+
+       <!-- VIDEO -->
+        {?post.video}
+        <div class="post">
+          {?view.list}
+          <div class="row">
+            <div class="span7">
+              <h2>
+                <a href="{$post.url}" title="{$video.description|nohtml}">{$video.description}</a>
+              </h2>
+              <p>
+                <h6>
+                  {$post.date} ⁄被围观 {$post.notes_count}+
+                </h6>
+              </p>
+            </div>
+            <div class="span1">
+              <span class="badge pull-right">{$post.like_count}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span2">
+              <a href="{$post.url}" class="thumbnail" title="{$video.description|nohtml}">
+                <img src="{$video.cover}">
+              </a>
+            </div>
+            <div class="span6 post-content">
+              <p>
+                {$video.player}
+              </p>
+              <p>{$video.description}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span6">
+              {?post.tag}
+              <p>
+                <h6> <i class="icon-tags"></i>
+                  {?loop:post.tags}
+                  <a href="{$post.tag.url}" title="{$post.tag.name|nohtml}"> {$post.tag.name} </a> 
+                  {/loop:post.tags}
+                </h6>
+              </p>
+              {/post.tag}
+            </div>
+            <div class="span2 read-more">
+              <a class="btn btn-primary pull-right" href="{$post.url}" title="{$video.description|nohtml}">阅读全文&raquo;</a>
+            </div>
+          </div>
+          <hr />
+        {/view.list}
+
+
+          {?view.post}
+          <div class="row">
+            <div class="span7">
+              <h2>
+                <a href="{$post.url}" title="{$video.description|nohtml}">{$video.description}</a>
+              </h2>
+              <p>
+                <h6>
+                  {$post.date} ⁄被围观 {$post.notes_count}+
+                </h6>
+              </p>
+            </div>
+            <div class="span1">
+              <span class="badge pull-right">{$post.like_count}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              <p>
+                {$video.player}
+              </p>
+              <p>{$video.description}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span6">
+              {?post.tag}
+              <p>
+                <h6> <i class="icon-tags"></i>
+                  {?loop:post.tags}
+                  <a href="{$post.tag.url}" title="{$post.tag.name|nohtml}"> {$post.tag.name} </a> 
+                  {/loop:post.tags}
+                </h6>
+              </p>
+              {/post.tag}
+            </div>
+            <div class="span2">
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              {$post.notes}
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              <? require('dd://assets/2012/0920/1611415Cc6/wumii.coffee').wumii({num:"5",mode:"3",title_length:"30"}) ?>
+            </div>
+          </div>
+        {/view.post}
+        </div>
+        {/post.video}
+        <!-- /VIDEO -->
+        {/loop:posts}     
+        {/posts} 
+        <div class="span8">
+          {?view.list}
+          <div class="pagination">
+              <ul>
+                  {?pagination}
+                  {?!$pagination.current_number|eq:"1"}
+                  <li>
+                      <a href="{$pagination.first.url}">首页</a>
+                  </li>
+                  {/!$pagination.current_number}
+                  {?!$pagination.current_number|eq:"1"}
+                  {?!$pagination.current_number|eq:"2"}
+                  {?pagination.prev}
+                  <li>
+                      <a href="{$pagination.prev.url}">上一页</a>
+                  </li>
+                  {/pagination.prev}
+                  {/!$pagination.current_number}
+                  {/!$pagination.current_number}
+                  {/pagination}
+
+                  {?pagination}
+                  {?loop:pagination}
+                  {?pagination.current}
+                  <li class="active">
+                      <a title="第{$pagination.number}页">{$pagination.number}</a>
+                  </li>
+                  {/pagination.current}
+                  {?!pagination.current}
+                  <li>
+                      <a href="{$pagination.url}">{$pagination.number}</a>
+                  </li>
+                  {/!pagination.current}
+                  {/loop:pagination}
+                  {/pagination}
+                  {?pagination}
+                  {?pagination.next}
+                  <li>
+                      <a href="{$pagination.next.url}">下一页</a>
+                  </li>
+                  <li>
+                      <a href="{$pagination.last.url}">尾页</a>
+                  </li>
+                  {/pagination.next}
+                  {/pagination}
+              </ul>
+          </div>
+          {/view.list}
+        </div>
+    </div>
+    <div class="span4">
+      <div class="well">
+          <div class="weget">
+            <h5>标签分类</h5>
+              <ul class="nav nav-pills">
+              {?tags}
+              {?loop:tags}
+              <li><a href="{$tag.url}">{$tag.name}</a></li>
+              {/loop:tags}
+              {/tags}
+            </ul>
+          </div>
+          <div class="weget">
+            <h5>最新文章</h5>
+            <div id="newest"></div>
+          </div>
+          <div class="weget">
+            <h5>最热文章</h5>
+            <div id="hotest"></div>
+          </div>
+        </div>
+    </div>
+  </div>
+    <footer class="footer">
+      @2008-1012
+    </footer>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){ 
+        $("#newest").load("{$global.url}/do/latestpost.html?_posts[limit]=5"); 
+        $("#hotest").load("{$global.url}/do/latestpost.html?_posts[limit]=5&_posts[order_by]=notes"); 
+    }); 
+</script> 
+
+</body>
+</html>
