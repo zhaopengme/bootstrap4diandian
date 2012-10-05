@@ -3,6 +3,7 @@
   		$(this).find(".read-more").fadeToggle();
   	});
 
+
     $('a').tooltip({
     	placement:"top"
     });
