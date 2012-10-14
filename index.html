@@ -17,35 +17,178 @@
   {$meta.syntaxhighlighter}
   <link href="{$meta.rss}" rel="alternate" title="订阅{$global.name|nohtml}" type="application/rss+xml">
   <link rel="apple-touch-icon" href="{$meta.mobile_icon}">
+
   <link rel="stylesheet" href="http://t.libdd.com/css/base/rich-content.css">
-  <link rel="stylesheet" href="http://x.libdd.com/farm1/6424fa/8d86a31d/main.css">
   <!-- Le styles -->
   <link href="http://x.libdd.com/farm1/6424fa/5060bdda/bootstrap.min.css" rel="stylesheet">
   <link href="http://x.libdd.com/farm1/6424fa/a98de6c3/bootstrap-responsive.min.css" rel="stylesheet">
-  <script type="text/javascript" src="http://t.libdd.com/js/libs/jquery/jquery-1.7-latest.js"></script>
-  <script type="text/javascript" src="http://x.libdd.com/farm1/6424fa/522c47d8/bootstrap.min.js"></script>
-  <script type="text/javascript" src="http://x.libdd.com/farm1/6424fa/23fbc141/main.js"></script>
 
+  
+  
+  
+  
+  <script type="text/javascript" src="http://t.libdd.com/js/libs/jquery/jquery-1.7-latest.js"></script>
+  
+<!--[if lt IE 10]>
+<script type="text/javascript" src="http://x.libdd.com/farm1/cafa82/3d5c9015/PIE.js"></script>
+<![endif]-->    
+
+  
+  
+  
+  <script type="text/javascript" src="http://x.libdd.com/farm1/6424fa/522c47d8/bootstrap.min.js"></script>
   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-</head>
+  <style type="text/css">
+    body { 
+      background: #fafafa;
+      padding-top: 60px; 
+      font-family:"Microsoft Yahei","微软雅黑";
+      background: url('http://static.duoshuo.com/images/tile-light.png');
+    }
+    #navbar{
+      font-size: 8px;
+    }
+    #sidebar{
+    }
+    #sidebar ul{
+      list-style: none;
+    } 
+
+    #sidebar ul li{
+      margin-top:5px;
+    } 
+    .container{
+
+    }
+    .post-title{
+
+    }
+  .post-title h4{
+    text-shadow: 1px 1px 0 #ddd;
+    }
+    .post-thumbnail{
+      margin-right: 15px;
+    }
+    .post-summary{
+
+    }
+    .post-aboutme{
+
+    }
+    .post-author{
+      margin: 10px;
+    }
+    .post-author-desc{
+      margin: 10px;
+    }
+    .content {
+    margin-bottom:20px;
+  }
+    .post-content p{
+      text-indent:2em;
+      line-height:24px;
+    }
+    .category a{
+      color: red;
+    }
+    .post{
+      margin-top: 8px;
+      border-bottom:1px solid #ddd;
+    }
+    .read-more{
+      display: none;
+    }
+    .thumbnail img{
+      width: 160px;
+      height: 120px;
+    }
+    .box {
+  padding: 20px;
+  background: #fff;
+  margin-bottom: 20px;
+  box-shadow: rgba(200,200,20);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: rgba(200,200,20);
+  -khtml-box-shadow: rgba(200,200,200,1) 0 2px 18px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+/*返回顶部*/
+.to-top:active,.to-top:hover{
+filter:alpha(opacity=75);-moz-opacity:0.75;opacity:0.75;
+   }
+.to-top,.to-top:link,.to-top:visited{
+position:fixed;text-indent:-9999px;display:block;width:54px;height:54px;bottom:187px;outline:none;background:url("http://m2.img.libdd.com/farm2/238/DBE154754AB4C10E7F15B7A2806BA5EE_54_54.PNG") no-repeat 0 0;filter:alpha(opacity=100);-moz-opacity:1;opacity:1; _display: none; 
+   }
+.fixed{position:fixed;
+      float:right;
+    }
+
+/* icons */
+[class^="cus-"],
+[class*=" cus-"] {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  *margin-right: .3em;
+  line-height: 15px;
+  vertical-align: text-top;
+  background-image: url("http://x.libdd.com/farm1/6424fa/38d3b3c2/cus-icons.png");
+  background-position: 15px 15px;
+  background-repeat: no-repeat;
+}
+[class^="cus-"]:last-child,
+[class*=" cus-"]:last-child {
+  *margin-left: 0;
+}
+
+
+
+
+.cus-icon-sina{width:15px;height:15px;background-position:-2px -3px;}
+.cus-icon-qq{width:15px;height:15px;background-position:-23px -3px;}
+.cus-icon-rss{width:15px;height:15px;background-position:-42px -3px;}
+
+    
+.da_roll{position:fixed;top:0;z-index:300;width:300px;}   
+
+a[href$=".zip"],a[href$=".7z"],a[href$=".rar"]{background:url("http://x.libdd.com/farm1/6424fa/822d834d/rar.gif") no-repeat left center;padding-left:19px;}
+
+    a[href^="http://pan.baidu.com/"]{background:url("http://x.libdd.com/farm1/6424fa/cf0cb595/baidu.gif") no-repeat left center;padding-left:13px;padding-right:13px;}
+
+    
+  </style>
+  <script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $(".post").hover(function() {
+        $(this).find(".read-more").fadeToggle();
+      });
+
+    });
+  </script>
+
+
+  </head>
 <body>
-  <div class="navbar navbar-fixed-top navbar-inverse" id="navbar">
+  <div class="navbar navbar-fixed-top " id="navbar">
     <div class="navbar-inner">
       <div class="container">
         {?pages}
         <ul class="nav">
           <li>
-            <a href="{$global.url}" title="{$global.description|nohtml}"> 
-              <i class="icon-home icon-white"></i>
-              首页
-            </a>
+            <h4>
+              <a href="{$global.url}" title="{$global.description}"> 
+                {$global.name}
+              </a>
+            </h4>
           </li>
           {?loop:pages}
           <li>
-            <a href="{$page.url}" title={$page.title|nohtml}"">{$page.title}</a>
+            <a href="{$page.url}" title="{$page.title|nohtml}">{$page.title}</a>
           </li>
           {/loop:pages}
           <li >
@@ -53,11 +196,11 @@
           </li>
         </ul>
         <form class="navbar-search" action="/">
-          <input type="text" name="q" class="search-query span2" placeholder="Search"></form>
+          <input type="text" name="q" class="search-query span2" placeholder="搜索一下,可能会有您需要的!"></form>
         <ul class="nav">
           {?inbox}
           <li>
-            <a href="{$inbox.url}" title="{$inbox.title|nohtml}"><i class="icon-comment icon-white"></i> {$inbox.title}</a>
+            <a href="{$inbox.url}" title="有什么口水,可以放在这里的,不会别人看见的."><i class="icon-comment"></i> 留言</a>
           </li>
           {/inbox}
           {?contribute}
@@ -66,10 +209,22 @@
           </li>
           {/contribute}
           <li>
-            <a href="http://weibo.com/523419490" title="微博">微博</a>
+            <a href="http://weibo.com/523419490" title="经常活跃在新浪微博上面,能看到更多专业内容!">
+              <i class="cus-icon-sina"></i>
+              新浪微博
+            </a>
           </li>
           <li>
-            <a href="{$meta.rss}" title="RSS订阅">RSS</a>
+            <a href="http://t.qq.com/imzhpe" title="作为一个熟人社交的网络空间,了解生活的点点滴滴!">
+              <i class="cus-icon-qq"></i>
+              腾讯微博
+            </a>
+          </li>
+          <li>
+            <a href="{$meta.rss}" title="通过RSS订阅,您不会漏掉文章的阅读的!">
+              <i class="cus-icon-rss"></i>
+              RSS订阅
+            </a>
           </li>
         </ul>
         {/pages}
@@ -77,23 +232,13 @@
     </div>
   </div>
 
-<div class="container">
-  <div class="row" id="header">
-    <div class="span8">
-      <h2>
-        <a href="{$global.url}" title="{$global.description|nohtml}">
-          {$global.name}
-        </a>
-      </h2>
-      <h4>{$global.description}</h4>
-    </div>
-    <div class="span4"></div>
-  </div>
+<div class="container" id="container"> 
   <div class="row">
-    <div class="span12">
-      <br>
-      <ul class="breadcrumb">
-        <li><a href="/" title="{$global.name|nohtml}<">首页</a> <span class="divider">/</span></li>
+    <div class="span8">
+      <div class="content box">
+        <div class="post-nav">
+        <ul class="breadcrumb">
+        <li><a href="/" title="{$global.name|nohtml}">首页</a> <span class="divider">/</span></li>
         {?view.list}
         <li>{$global.name}</li>        
         {/view.list}
@@ -108,11 +253,10 @@
           {/loop:posts}
           {/posts}    
         {/view.post}
-      </ul>
-    </div>
-  </div>  
-  <div class="row">
-    <div class="span8" id="content">
+      </ul>          
+        </div>
+
+
         {?view.list}
           {?!posts}
             <div class="entry-container text">
@@ -125,47 +269,49 @@
         {?loop:posts}
         <div class="post">
           <!-- post-title -->
-          <div class="row post-title">
-            <div class="span7">
-              <h2>
+          <div class="post-title clearfix">
+            <div class="pull-left">
+              <h4>
                 <!-- TEXT -->
                 {?post.text}
-                <a href="{$post.url}" title="{$text.title|nohtml}">{$text.title}</a>
+                <a href="{$post.url}" title="{$text.title|nohtml}">{$text.title|nohtml_truncate:"30":"..."}</a>
                 {/post.text}
                 <!-- PHOTO -->
                 {?post.photo}
-                <a href="{$post.url}" title="{$photos.title|nohtml}">{$photos.title}</a>
+                <a href="{$post.url}" title="{$photos.title|nohtml}">{$photos.title|nohtml_truncate:"30":"..."}</a>
                 {/post.photo}
                 <!-- LINK -->
                 {?post.link}
-                <a href="{$post.url}" title="{$link.title|nohtml}">{$link.title}</a>
+                <a href="{$post.url}" title="{$link.title|nohtml}">{$link.title|nohtml_truncate:"30":"..."}</a>
                 {/post.link}
                 <!-- AUDIO -->
                 {?post.audio}
-                <a href="{$post.url}" title="{$audio.song|nohtml}">{$audio.song}</a>
+                <a href="{$post.url}" title="{$audio.song|nohtml}">{$audio.song|nohtml_truncate:"30":"..."}</a>
                 {/post.audio}
                 <!-- VIDEO -->
                 {?post.video}
-                <a href="{$post.url}" title="{$video.description|nohtml}">{$video.description}</a>
+                <a href="{$post.url}" title="{$video.description|nohtml}">{$video.description|nohtml_truncate:"30":"..."}</a>
                 {/post.video}
-              </h2>
+              </h4>
               <p>
                 <h6>
-                  {$post.date} 
+                  由 大鹏 发布于 {$post.date} 
                 </h6>
               </p>
             </div>
-            <div class="span1">
-              <span class="badge pull-right">{$post.notes_count}</span>
+            <div class="">
+            <a href="{$post.url}#post-comment">
+            <span class="pull-right badge ds-thread-count" data-thread-key="{$post.id}">暂无评论</span>
+            </a>
             </div>
           </div>
 
           <!-- list-page -->
           {?view.list}
-          <div class="row post-content">
+          <div class="clearfix">
             <!-- TEXT -->
             {?post.text}
-            <div class="span2">
+            <div class="post-thumbnail pull-left">
               <a href="{$post.url}" class="thumbnail" title="{$text.title|nohtml}">
                 {?text.thumbnail}
                 <img src="{$text.thumbnail.250.src}" >
@@ -175,13 +321,13 @@
                 {/!text.thumbnail}
               </a>
             </div>
-            <div class="span6 post-content">
-              <p>{$text.summary|nohtml}</p>
+            <div class="post-summary post-content">
+              <p>{$text.summary|nohtml_truncate:"180":"..."}</p>
             </div>
             {/post.text}
             <!-- PHOTO -->
             {?post.photo}
-            <div class="span2">
+            <div class="post-thumbnail pull-left">
               <a href="{$post.url}" class="thumbnail" title="{$photos.title|nohtml}">
                 {?photos.single}
                 {?loop:photos}
@@ -198,50 +344,50 @@
                 {/photos.multi}
               </a>
             </div>
-            <div class="span6">
-              <p>{$photos.description}</p>
+            <div class="post-summary post-content">
+              <p>{$photos.description|nohtml_truncate:"180":"..."}</p>
             </div>
             {/post.photo}
             <!-- LINK -->
             {?post.link}
-            <div class="span2">
+            <div class="post-thumbnail pull-left">
               <a href="{$post.url}" class="thumbnail" title="{$link.title|nohtml}">
                 <img src="http://x.libdd.com/farm1/6424fa/a8116cab/160x120.gif">
               </a>
             </div>
-            <div class="span6">
+            <div class="post-summary post-content">
               <p>
                 <a href="{$link.url}" title="{$link.description|nohtml}">{$link.title}</a>
               </p>
-              <p>{$link.description}</p>
+              <p>{$link.description|nohtml_truncate:"180":"..."}</p>
             </div>
             {/post.link}
             <!-- AUDIO -->
             {?post.audio}
-            <div class="span2">
+            <div class="post-thumbnail pull-left">
               <a href="{$post.url}" class="thumbnail" title="{$audio.description|nohtml}">
                 <img src="{$audio.cover_185}">
               </a>
             </div>
-            <div class="span6">
+            <div class="post-summary post-content">
               <p>
                 {$audio.player}
               </p>
-              <p>{$audio.description}</p>
+              <p>{$audio.description|nohtml_truncate:"180":"..."}</p>
             </div>
             {/post.audio}
             <!-- VIDEO -->
             {?post.video}
-            <div class="span2">
+            <div class="post-thumbnail pull-left">
               <a href="{$post.url}" class="thumbnail" title="{$video.description|nohtml}">
                 <img src="{$video.cover}">
               </a>
             </div>
-            <div class="span6 post-content">
+            <div class="post-summary post-content">
+              <p>{$video.description|nohtml_truncate:"180":"..."}</p>
               <p>
                 {$video.player}
               </p>
-              <p>{$video.description}</p>
             </div>
             {/post.video}
           </div>
@@ -249,8 +395,7 @@
 
           <!-- post-page -->
           {?view.post}
-          <div class="row">
-            <div class="span8">
+            <div class="post-content">
               <p>
                 <!-- TEXT -->
                 {?post.text}
@@ -294,13 +439,12 @@
                 <p>{$video.description}</p>
                 {/post.video}              
               </p>
-            </div>
           </div>
           {/view.post}
 
           <!-- post-tags -->
-          <div class="row post-tags">
-            <div class="span6">
+          <div class="post-meta clearfix">
+            <div class="pull-left">
               {?post.tag}
               <p>
                 <h6> <i class="icon-tags"></i>
@@ -311,27 +455,27 @@
               </p>
               {/post.tag}              
             </div>
-            <div class="span2 read-more">
+            <div class="pull-right read-more">
               {?view.list}
               <!-- TEXT -->
               {?post.text}
-              <a class="btn btn-primary pull-right" href="{$post.url}" title="{$text.title|nohtml}">阅读全文&raquo;</a>
+              <a class="btn pull-right" href="{$post.url}" title="{$text.title|nohtml}">阅读全文&raquo;</a>
               {/post.text}
               <!-- PHOTO -->
               {?post.photo}
-              <a class="btn btn-primary pull-right" href="{$post.url}" title="{$photos.title|nohtml}">阅读全文&raquo;</a>
+              <a class="btn pull-right" href="{$post.url}" title="{$photos.title|nohtml}">阅读全文&raquo;</a>
               {/post.photo}
               <!-- LINK -->
               {?post.link}
-              <a class="btn btn-primary pull-right" href="{$post.url}" title="{$link.title|nohtml}">阅读全文&raquo;</a>
+              <a class="btn pull-right" href="{$post.url}" title="{$link.title|nohtml}">阅读全文&raquo;</a>
               {/post.link}
               <!-- AUDIO -->
               {?post.audio}
-              <a class="btn btn-primary pull-right" href="{$post.url}" title="{$audio.description|nohtml}">阅读全文&raquo;</a>
+              <a class="btn pull-right" href="{$post.url}" title="{$audio.description|nohtml}">阅读全文&raquo;</a>
               {/post.audio}
               <!-- VIDEO -->
               {?post.video}
-              <a class="btn btn-primary pull-right" href="{$post.url}" title="{$video.description|nohtml}">阅读全文&raquo;</a>
+              <a class="btn pull-right" href="{$post.url}" title="{$video.description|nohtml}">阅读全文&raquo;</a>
               {/post.video}
               {/view.list}
             </div>
@@ -340,27 +484,23 @@
 
         {?view.post}
         <!-- post-wumii -->
-        <div class="row post-wumii">
-          <div class="span8">
+        <div class="post-wumii clearfix">
             <? require('dd://assets/2012/0920/1611415Cc6/wumii.coffee').wumii({num:"5",mode:"3",title_length:"30"}) ?>
-          </div>
         </div>
         <!-- post-aboutme -->
-        <div class="row post-aboutme">
-          <br />
-          <div class="span1">
+        <div class="post-aboutme clearfix box">
+          <div class="post-author pull-left">
             <a href="" class="">
               <img src="{$global.cover_64}" class="img-polaroid" alt="">
             </a>
           </div>
-          <div class="span7">
+          <div class="post-author-desc">
             <div>作者: <a href="#" title="">大鹏</a></div>
             <div>{$author.description}</div>
           </div>
         </div>
         <!-- post-pagination -->
-        <div class="row post-pagination">
-          <div class="span8">
+        <div class="clearfix post-pagination">
             <br />
             {?pagination}
               <ul class="pager">
@@ -376,36 +516,24 @@
             {/pagination.next}
               </ul>
             {/pagination}
-          </div>
         </div>
         <!-- post-comment -->
-        <div class="row post-wumii">
-          <div class="span8">
+        <div class="clearfix post-comment" id="post-comment">
             <!-- Duoshuo Comment BEGIN -->
-              <div class="ds-thread" data-thread-key="" 
-              data-title="" data-author-key="" data-url=""></div>
-              <script type="text/javascript">
-              var duoshuoQuery = {short_name:"beardnote"};
-              (function() {
-                var ds = document.createElement('script');
-                ds.type = 'text/javascript';ds.async = true;
-                ds.src = 'http://static.duoshuo.com/embed.js';
-                ds.charset = 'UTF-8';
-                (document.getElementsByTagName('head')[0] 
-                || document.getElementsByTagName('body')[0]).appendChild(ds);
-              })();
-              </script>
+      <div class="ds-thread" data-thread-key="{$post.id}" 
+              data-title="" data-author-key="627052" data-url="{$post.url}"></div>
+              
             <!-- Duoshuo Comment END -->
-          </div>
         </div>
 
         {/view.post}
         {/loop:posts}
 
+
+
         <!-- pagination -->
         {?view.list}
-        <div class="row">
-          <div class="span8">
+        <div class="clearfix post-pagination">
           <div class="pagination pagination-centered">
               <ul>
                   {?pagination}
@@ -450,8 +578,7 @@
                   {/pagination.next}
                   {/pagination}
               </ul>
-          </div>
-            
+           
           </div>
         </div>
         {/view.list}
@@ -459,43 +586,175 @@
 
 
 
-        
     </div>
-    <div class="span4">
-      <div class="well">
-          <div class="weget">
-            <h5>标签分类</h5>
-              <ul class="nav nav-pills">
-              {?tags}
-              {?loop:tags}
-              <li><a href="{$tag.url}">{$tag.name}</a></li>
-              {/loop:tags}
-              {/tags}
-            </ul>
-          </div>
-          <div class="weget">
-            <h5>最新文章</h5>
-            <div id="newest"></div>
-          </div>
-          <div class="weget">
-            <h5>最热文章</h5>
-            <div id="hotest"></div>
+    <!-- /content         -->
+    </div>
+    <div class="span4 " id="sidebar">
+        <div class="weget box">
+      <ul id="myTab" class="nav nav-tabs">
+         <li class="active"><a href="#tags" data-toggle="tab">标签分类</a></li>
+         <li><a href="#newest" data-toggle="tab">最新文章</a></li>
+         <li><a href="#hotest" data-toggle="tab">最热文章</a></li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="tags">
+            <ul class="nav nav-pills">
+            {?tags}
+            {?loop:tags}
+        <li><a href="{$tag.url}" title="{$tag.name}">{$tag.name}</a></li>
+            {/loop:tags}
+            {/tags}
+          </ul>          
+        </div>
+        <div class="tab-pane fade" id="newest">
+        </div>
+        <div class="tab-pane fade" id="hotest"></div>
+        <div class="tab-pane fade" id="hotmonth">
+        </div>
+      </div>
+        </div>
+
+        <div class="weget box">
+          <h5>最新评论</h5>
+          <div id="lastcomment">
+          <ul class="ds-recent-comments" data-num-items="5" data-show-title="1" data-excerpt-length="17" data-show-avatars="1"></ul>                
           </div>
         </div>
+
+
+        <div class="weget box da_rollbox">
+          <h5>友情链接</h5>
+          <div id="links">
+            <ul>
+              <li><a href="http://mag.5xue.com" title="希望泉杂志">希望泉杂志</a></li>            
+            </ul>                
+          </div>
+        </div>
+
+
     </div>
   </div>
     <footer class="footer">
-      @2008-1012
+      <p>
+        @2008-1012 <a href="{$global.url}" title="{$global.description}"> {$global.name}</a> |  
+        Powered By <a href="http://diandian.com" title="点点,让博客从此简单!">点点网</a> | 
+        Designed by <a href="{$global.url}" title="{$global.name} 的主人!">大鹏</a>
+      </p>
     </footer>
 </div>
+
+<!--回到顶部-->
+<div id="back-to-top"><script>
+lastScrollY=0;
+function heartBeat(){
+var diffY;
+if (document.documentElement && document.documentElement.scrollTop)
+   diffY = document.documentElement.scrollTop;
+else if (document.body)
+   diffY = document.body.scrollTop
+else
+   {/*Netscape stuff*/}
+percent=.1*(diffY-lastScrollY);
+if(percent>0)percent=Math.ceil(percent);
+else percent=Math.floor(percent);
+document.getElementById("full").style.top=parseInt(document.getElementById("full").style.top)+percent+"px";
+lastScrollY=lastScrollY+percent;
+if(lastScrollY<1000)
+{
+document.getElementById("full").style.display="none";
+}
+else
+{
+document.getElementById("full").style.display="block";
+}
+}
+suspendcode="<div id=＼"full＼" style='right:54px;POSITION:absolute;TOP:0px;z-index:100'><a onclick='window.scrollTo(0,0);'><div class=＼"to-top＼">TOP</div></a><br></div>" document.write(suspendcode); window.setInterval("heartBeat()",50); </script></div>
+
+
+
+
 
 <script type="text/javascript">
     $(document).ready(function(){ 
         $("#newest").load("{$global.url}/do/latestpost.html?_posts[limit]=10"); 
         $("#hotest").load("{$global.url}/do/latestpost.html?_posts[limit]=10&_posts[order_by]=notes"); 
+
+
     }); 
+        $('#navbar a').tooltip({
+        placement:"bottom"
+      });
+        $('#container a').tooltip({
+        placement:"top"
+      });
+
+  
+  
+  
 </script> 
+<!--绿色按钮代码开始-->
+<div data-widget="backtop"><script src="http://x.libdd.com/farm1/6424fa/53dcc851/backtop-green.js" charset="utf-8"></script></div>
+<!--结束-->
+
+
+<script type="text/javascript">
+              var duoshuoQuery = {short_name:"beardnote"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = 'http://static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+              </script>
+
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35533950-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+  
+  
+jQuery(document).ready(function($) {
+  var boxtop = $('.da_rollbox').offset().top;$(window).scroll(function(){if($(window).scrollTop() > boxtop){$('.da_rollbox').addClass('da_roll');}else{$('.da_rollbox').removeClass('da_roll');}});
+}); 
+
+  
+  
+</script>
+
+<script type="text/javascript">
+  $(function() {
+    if (window.PIE) {
+        $('.rounded').each(function() {
+            PIE.attach(this);
+        });
+    }
+}); 
+</script> 
+  <style tyle="text/css">
+    
+*{
+behavior: url("http://x.libdd.com/farm1/0b5c8a/3b8fed93/PIE.htc");
+} </style>
 
 </body>
 </html>
+
+
+
+
+
+
+
 
