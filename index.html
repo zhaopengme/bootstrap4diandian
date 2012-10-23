@@ -1,26 +1,47 @@
+  {#text:新浪微博地址|value:"#"}
+  {#text:google统计代码|value:"#"}
+  {#text:腾讯微博地址|value:"#"}
+  {#text:作者名称|value:"#"}
+  {#boolean:显示点点评论|value:"false"}
+  {#boolean:显示多说评论|value:"true"}
+  {#text:多说域名|value:"beardnote"}
+  {#boolean:显示无觅相关文章|value:"false"}
+  {#text:友情链接|value:"<li><a href='http://beardnote.com'>胡子笔记</a></li>"}
+  {#boolean:显示底部公告栏|value:"false"}
+  {#text:公告内容|value:"<li>公告内容1</li><li>公告内容2</li><li>公告内容3</li>"}
+  {#text:点点按钮顶部距离|value:"50px"}
+  {#text:顶部导航栏距离|value:"60px"}
+  {#text:默认缩略图|value:"http://x.libdd.com/farm1/6424fa/c106a7b5/default.jpg"}
+  {#text:侧边栏AD1-TITLE|value:""}
+  {#text:侧边栏AD1-CONTENT|value:""}
+  {#text:侧边栏AD2-TITLE|value:""}
+  {#text:侧边栏AD2-CONTENT|value:""}
+  {#text:侧边栏AD3-TITLE|value:""}
+  {#text:侧边栏AD3-CONTENT|value:""}
+
 <script type="server/javascript">
     if (dian.request.action === 'latestpost.html'){
         require('dd://assets/2012/0718/180307hJcO/latestpost.coffee').latest({layout:"ul",each:"li",length:"30"});
         return;
     }
 </script>
-<!DOCTYPE html>
+
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>
-    <? require('dd://assets/2012/0713/181755Gh6M/seotitle.coffee').title(" - "," | ", 20,"没有找到文章哦")?>
-  </title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="{$meta.description|nohtml}">
   <meta name="keywords" content="{$meta.keywords|nohtml}">
   {$meta.syntaxhighlighter}
   <link href="{$meta.rss}" rel="alternate" title="订阅{$global.name|nohtml}" type="application/rss+xml">
+  <link rel="shortcut icon" type="image/jpeg" href="<?= dian.data.meta.favicon ?>">
   <link rel="apple-touch-icon" href="{$meta.mobile_icon}">
   <link rel="stylesheet" href="http://t.libdd.com/css/base/rich-content.css">
-  <!-- 引入CSS -->
+  <!-- 引入bootstrap CSS -->
   <link href="http://x.libdd.com/farm1/6424fa/5060bdda/bootstrap.min.css" rel="stylesheet">
   <link href="http://x.libdd.com/farm1/6424fa/a98de6c3/bootstrap-responsive.min.css" rel="stylesheet">
+
   <!-- 引入js -->
   <!-- jquery js -->
   <script type="text/javascript" src="http://t.libdd.com/js/libs/jquery/jquery-1.7-latest.js"></script>
@@ -29,42 +50,87 @@
   <!-- 图片延时加载 -->
   <script type="text/javascript" src="http://x.libdd.com/farm1/c32ade/a5f64798/B519A.js"></script>
   <!-- 返回顶部 -->
-  <script src="http://x.libdd.com/farm1/6424fa/53dcc851/backtop-green.js" charset="utf-8"></script>
+  <script src="http://x.libdd.com/farm1/6424fa/46d08c23/backtop.js" charset="utf-8"></script>
+  <!-- 顶部公告栏 -->
+  <script type="text/javascript" src="http://x.libdd.com/farm1/6424fa/8b00af51/jquery.notice.js"></script>
   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+  <title><? require('dd://assets/2012/0713/181755Gh6M/seotitle.coffee').title(" - "," | ", 20,"没有找到文章哦")?></title>
+
   <script type="text/javascript">
-    jQuery(document).ready(function($) {
+  jQuery(document).ready(function($) {
       // 阅读全文加载
       $(".post").hover(function() {
         $(this).find(".read-more").fadeToggle();
       });
+
       // 图片延时加载
       $("#container img").lazyload({
         placeholder  : "http://x.libdd.com/farm1/6424fa/49f3f902/grey.png", 
         effect       : "fadeIn",
         failurelimit : 30
       });
+
       // tooltip
       $('#navbar a').tooltip({
         placement:"bottom"
       });
+
       $('#container a').tooltip({
         placement:"top"
       });
-    });
+
+      //点点MP3排版
+      $("div[id^='__ddMplayer']").each(function(){
+        $(this).addClass("pull-right");
+      });
+
+      // 最新文章 最热文章 
+      $("#newest").load("{$global.url}/do/latestpost.html?_posts[limit]=10");
+      $("#hotest").load("{$global.url}/do/latestpost.html?_posts[limit]=10&_posts[order_by]=notes"); 
+
+      // 标题动态加载
+      $('.post-title h4 a').click(function(e){
+           e.preventDefault();
+          var htm='正在努力的加载中...',i=9,
+            t=$(this).html(htm).unbind('click');
+          (function ct(){
+            i<0?(i=9,t.html(htm),ct()):(t[0].innerHTML+='.',i--,setTimeout(ct,200));
+          })();
+          window.location=this.href;//opera fixed
+      });
+
+      // 底部公告栏
+      $(".bulletin").scroll({
+          line: 1,
+          speed: 1000,
+          timer: 5000
+      }); //修改此数字调整滚动时间
+
+      // 修改点点的iframe
+      var dianIframe = $("iframe")[0];
+      $(dianIframe).attr("height","auto");
+      $(dianIframe).css("top","{$_点点按钮顶部距离}");
+
+  });
+  
+
   </script>
+
+
 
   <style type="text/css">
     body { 
       background: #fafafa;
-      padding-top: 60px; 
+      padding-top: {$_顶部导航栏距离}; 
       font-family:"Microsoft Yahei","微软雅黑";
       background: url('http://static.duoshuo.com/images/tile-light.png');
+	  color: #000;
     }
     #navbar{
-      font-size: 8px;
+      font-size: 12px;
     }
     #sidebar{
     }
@@ -83,19 +149,23 @@
     }
     .post-thumbnail{
       margin-right: 15px;
+      width:170px;
+      height:130px;
     }
     .post-summary{
     }
-    .post-aboutme{
+    .post-copyright{
+
     }
     .post-author{
-      margin: 10px;
+      margin-right: 10px;
     }
+
     .post-author-desc{
-      margin: 10px;
+      
     }
     .content {
-      margin-bottom:20px;
+
     }
     .post-content p{
       text-indent:2em;
@@ -105,8 +175,7 @@
       color: red;
     }
     .post{
-      margin-top: 8px;
-      border-bottom:1px solid #ddd;
+
     }
     .read-more{
       display: none;
@@ -201,34 +270,85 @@
       background:url("http://x.libdd.com/farm1/6424fa/cf0cb595/baidu.gif") no-repeat left center;
       padding-left:13px;
       padding-right:13px;
-    }   
+    }
+    /*解决多说头像在IE下失效的问题*/
+  .ds-recent-comments img{
+    width: 32px;
+    height: 32px;
+  }
+    /*底部公告栏*/
+    #notice{
+      position:fixed;
+      bottom:0;
+      background:#000;
+      width:100%;
+      height:23px;
+      line-height:23px;
+      z-index:9999;
+      opacity:.60;
+      filter:alpha(opacity=60);
+      _bottom:auto;
+      _width:100%;
+      _position:absolute;
+      _top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));
+    }
+    #notice a{
+      color:#fff;
+      font-size:13px;
+      letter-spacing:2px;
+    }
+    #notice .close,#feed a{
+      float:right;
+      margin:0 10px 0 0;
+      padding:0 10px 0 10px;
+    }
+    #notice .bulletin{
+      float:left;
+      height:23px;
+      color:#fff;
+      margin:0 0 0 20px;
+      background:url("http://x.libdd.com/farm1/2893f5/141f8c04/bulletin.gif") no-repeat;
+      min-height:23px;
+      overflow:hidden;
+    }
+    #notice .bulletin li{
+      height:23px;
+      padding-left:25px;
+    }
+    #notice ul,#notice li{
+      margin:0px;
+      padding:0px;
+      list-style:none;
+    }
+
   </style>
 </head>
 <body>
-  <div class="navbar navbar-fixed-top " id="navbar">
+  <!-- navbar -->
+  <div class="navbar navbar-fixed-top" id="navbar">
     <div class="navbar-inner">
       <div class="container">
-        {?pages}
         <ul class="nav">
           <li>
             <h4>
-              <a href="{$global.url}" title="{$global.description}"> 
-                {$global.name}
-              </a>
+              <a href="{$global.url}" title="{$global.description}">{$global.name}</a>
             </h4>
           </li>
+          {?pages}
           {?loop:pages}
           <li>
-            <a href="{$page.url}" title="{$page.title|nohtml}">{$page.title}</a>
+            <a href="{$page.url}" title="{$page.title}">{$page.title}</a>
           </li>
           {/loop:pages}
-          <li >
+          {/pages}
+          <li>
             <a href="{$global.archive_url}" title="存档">存档</a>
           </li>
         </ul>
         <form class="navbar-search" action="/">
-          <input type="text" name="q" class="search-query span2" placeholder="搜索一下,可能会有您需要的!"></form>
-        <ul class="nav">
+          <input type="text" name="q" class="search-query span2" placeholder="搜索一下,发现惊喜!"></form>
+        </form>
+        <ul class="nav pull-right">
           {?inbox}
           <li>
             <a href="{$inbox.url}" title="有什么口水,可以放在这里的,不会别人看见的."><i class="icon-comment"></i>留言</a>
@@ -239,212 +359,202 @@
             <a href="{$contribute.url}" title="{$contribute.title|nohtml}">{$contribute.title}</a>
           </li>
           {/contribute}
+          {?$_新浪微博地址}
           <li>
-            <a href="http://weibo.com/523419490" title="经常活跃在新浪微博上面,能看到更多专业内容!">
-              <i class="cus-icon-sina"></i>
-              新浪微博
+            <a href="{$_新浪微博地址}" title="经常活跃在新浪微博上面,能看到更多专业内容!">
+              <i class="cus-icon-sina"></i>新浪微博
             </a>
           </li>
+          {/$_新浪微博地址}
+          {?$_腾讯微博地址}
           <li>
-            <a href="http://t.qq.com/imzhpe" title="作为一个熟人社交的网络空间,了解生活的点点滴滴!">
-              <i class="cus-icon-qq"></i>
-              腾讯微博
+            <a href="{$_腾讯微博地址}" title="作为一个熟人社交的网络空间,了解生活的点点滴滴!">
+              <i class="cus-icon-qq"></i>腾讯微博
             </a>
           </li>
+          {/$_腾讯微博地址}
           <li>
             <a href="{$meta.rss}" title="通过RSS订阅,您不会漏掉文章的阅读的!">
               <i class="cus-icon-rss"></i>
               RSS订阅
-            </a>
-          </li>
-        </ul>
-        {/pages}
+            </a>        
+          </ul>
       </div>
     </div>
   </div>
-
-<div class="container" id="container"> 
-  <div class="row">
-    <div class="span8">
-      <div class="content box">
-        <div class="post-nav">
-          <ul class="breadcrumb">
-            <li>
-              <a href="{$global.url}" title="{$global.name|nohtml}">首页</a> <span class="divider">/</span>
-            </li>
-        {?view.list}
-            <li>{$global.name}</li>        
-        {/view.list}
-        {?view.post}
-        {?posts}
-        {?loop:posts}
-            <li>
-              {?post.video}{$video.description|nohtml_truncate:"16":"..."}{/post.video}
-              {?post.text}{?$text.title}{$text.title}{/$text.title}{?!$text.title}{$text.summary|nohtml_truncate:"16":"..."}{/!$text.title}{/post.text}
-              {?post.audio}{$audio.song}-{$audio.artist}{/post.audio}
-             {?post.photo}{?$photos.title}{$photos.title}{/$photos.title}{?!$photos.title}{?$photos.description}{$photos.description|nohtml_truncate:"16":"..."}{/$photos.description}{?!$photos.description}欣赏最新图片集{/!$photos.description}{/!$photos.title}{/post.photo}
-              {?post.link}{?$link.title}{$link.title}{/$link.title}{?!$link.title}{?$link.description}{$link.description|nohtml_truncate:"16":"..."}{/$link.description}{?!$link.description}{$link.url|truncate:"16":"..."}{/!$link.description}{/!$link.title}{/post.link}
-            </li>
-          {/loop:posts}
-          {/posts}    
-        {/view.post}
-          </ul>          
-        </div>
-
-
-        {?view.list}
-          {?!posts}
-            <div class="entry-container text">
-              <h3>找不到相关结果</h3>
-            </div>
-          {/!posts}
-        {/view.list}  
-
-        {?posts}
-        {?loop:posts}
-        <div class="post">
-          <!-- post-title -->
-          <div class="post-title clearfix">
-            <div class="pull-left">
-              <h4>
-                <!-- TEXT -->
-                {?post.text}
-                <a href="{$post.url}" title="{$text.title|nohtml}">{$text.title|nohtml_truncate:"30":"..."}</a>
-                {/post.text}
-                <!-- PHOTO -->
-                {?post.photo}
-                <a href="{$post.url}" title="{$photos.title|nohtml}">{$photos.title|nohtml_truncate:"30":"..."}</a>
-                {/post.photo}
-                <!-- LINK -->
-                {?post.link}
-                <a href="{$post.url}" title="{$link.title|nohtml}">{$link.title|nohtml_truncate:"30":"..."}</a>
-                {/post.link}
-                <!-- AUDIO -->
-                {?post.audio}
-                <a href="{$post.url}" title="{$audio.song|nohtml}">{$audio.song|nohtml_truncate:"30":"..."}</a>
-                {/post.audio}
-                <!-- VIDEO -->
-                {?post.video}
-                <a href="{$post.url}" title="{$video.description|nohtml}">{$video.description|nohtml_truncate:"30":"..."}</a>
-                {/post.video}
-              </h4>
-              <p>
-                <h6>
-                  由<a href="{$global.url}" title="{$global.name|nohtml}">大鹏</a>发布于 {$post.date} 
-                </h6>
-              </p>
-            </div>
-            <div class="">
-            <a href="{$post.url}#post-comment">
-            <span class="pull-right badge ds-thread-count" data-thread-key="{$post.id}">暂无评论</span>
-            </a>
-            </div>
+  <!-- / navbar -->
+  <!-- container -->
+  <div class="container" id="container">
+    <div class="row">
+      <!-- mainContent -->
+      <div class="span8" id="mainContent">
+        <div class="content">
+          <div class="post-nav" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li>
+                <a href="{$global.url}" title="{$global.name|nohtml}">首页</a> <span class="divider">/</span>
+              </li>
+              {?view.list}
+              <li>{$global.name}</li>
+              {/view.list}
+              {?view.post}
+              {?posts}
+              {?loop:posts}
+              <li>
+                {?post.video}{$video.description|nohtml_truncate:"16":"..."}{/post.video}
+                {?post.text}{?$text.title}{$text.title}{/$text.title}{?!$text.title}{$text.summary|nohtml_truncate:"16":"..."}{/!$text.title}{/post.text}
+                {?post.audio}{$audio.song}-{$audio.artist}{/post.audio}
+               {?post.photo}{?$photos.title}{$photos.title}{/$photos.title}{?!$photos.title}{?$photos.description}{$photos.description|nohtml_truncate:"16":"..."}{/$photos.description}{?!$photos.description}欣赏最新图片集{/!$photos.description}{/!$photos.title}{/post.photo}
+                {?post.link}{?$link.title}{$link.title}{/$link.title}{?!$link.title}{?$link.description}{$link.description|nohtml_truncate:"16":"..."}{/$link.description}{?!$link.description}{$link.url|truncate:"16":"..."}{/!$link.description}{/!$link.title}{/post.link}
+              </li>
+              {/loop:posts}
+              {/posts}
+              {/view.post}
+            </ul>
           </div>
-
-          <!-- list-page -->
           {?view.list}
-          <div class="clearfix">
-            <!-- TEXT -->
-            {?post.text}
-            <div class="post-thumbnail pull-left">
-              <a href="{$post.url}" class="thumbnail" title="{$text.title|nohtml}">
-                {?text.thumbnail}
-                <img src="{$text.thumbnail.250.src}" >
-                {/text.thumbnail}
-                {?!text.thumbnail}
-                <img src="http://x.libdd.com/farm1/6424fa/a8116cab/160x120.gif">
-                {/!text.thumbnail}
-              </a>
-            </div>
-            <div class="post-summary post-content">
-              <p>{$text.summary|nohtml_truncate:"180":"..."}</p>
-            </div>
-            {/post.text}
-            <!-- PHOTO -->
-            {?post.photo}
-            <div class="post-thumbnail pull-left">
-              <a href="{$post.url}" class="thumbnail" title="{$photos.title|nohtml}">
-                {?photos.single}
-                {?loop:photos}
-                <img src="{$photo.250.src}" >
-                {/loop:photos}
-                {/photos.single}
-
-                {?photos.multi}
-                {?loop:photos}
-                {?photos@first}
-                <img src="{$photo.250.src}" >
-                {/photos@first}
-                {/loop:photos}
-                {/photos.multi}
-              </a>
-            </div>
-            <div class="post-summary post-content">
-              <p>{$photos.description|nohtml_truncate:"180":"..."}</p>
-            </div>
-            {/post.photo}
-            <!-- LINK -->
-            {?post.link}
-            <div class="post-thumbnail pull-left">
-              <a href="{$post.url}" class="thumbnail" title="{$link.title|nohtml}">
-                <img src="http://x.libdd.com/farm1/6424fa/a8116cab/160x120.gif">
-              </a>
-            </div>
-            <div class="post-summary post-content">
-              <p>
-                <a href="{$link.url}" title="{$link.description|nohtml}">{$link.title}</a>
-              </p>
-              <p>{$link.description|nohtml_truncate:"180":"..."}</p>
-            </div>
-            {/post.link}
-            <!-- AUDIO -->
-            {?post.audio}
-            <div class="post-thumbnail pull-left">
-              <a href="{$post.url}" class="thumbnail" title="{$audio.description|nohtml}">
-                <img src="{$audio.cover_185}">
-              </a>
-            </div>
-            <div class="post-summary post-content">
-              <p>
-                {$audio.player}
-              </p>
-              <p>{$audio.description|nohtml_truncate:"180":"..."}</p>
-            </div>
-            {/post.audio}
-            <!-- VIDEO -->
-            {?post.video}
-            <div class="post-thumbnail pull-left">
-              <a href="{$post.url}" class="thumbnail" title="{$video.description|nohtml}">
-                <img src="{$video.cover}">
-              </a>
-            </div>
-            <div class="post-summary post-content">
-              <p>{$video.description|nohtml_truncate:"180":"..."}</p>
-              <p>
-                {$video.player}
-              </p>
-            </div>
-            {/post.video}
+          {?!posts}
+          <div class="entry-container text">
+             <h3>找不到相关结果</h3>
           </div>
+          {/!posts}
           {/view.list}
 
-          <!-- post-page -->
-          {?view.post}
-            <div class="post-content">
-              <p>
-                <!-- TEXT -->
+          <!-- post -->
+          {?posts}
+          {?loop:posts}
+          <div class="post box">
+            <!-- post-title -->
+            <div class="post-title clearfix">
+              <div class="pull-left">
+                <h4>
+                  <a href="{$post.url}" title="{?post.text}{$text.title|nohtml}{/post.text}{?post.photo}{$photos.title|nohtml}{/post.photo}{?post.link}{$link.title|nohtml}{/post.link}{?post.audio}{$audio.song|nohtml}{/post.audio}{?post.video}{$video.description|nohtml}{/post.video}">
+                    {?post.text}{$text.title|nohtml_truncate:"30":"..."}{/post.text}{?post.photo}{$photos.title|nohtml_truncate:"30":"..."}{/post.photo}{?post.link}{$link.title|nohtml_truncate:"30":"..."}{/post.link}{?post.audio}{$audio.song|nohtml_truncate:"30":"..."}{/post.audio}{?post.video}{$video.description|nohtml_truncate:"30":"..."}{/post.video}
+                  </a>
+                </h4>
+                <p>
+                  由<a href="{$global.url}" title="{$global.name|nohtml}">{?$_作者名称}{$_作者名称}{/$_作者名称}{?!$_作者名称}{$global.name}{/!$_作者名称}</a>发布于 {$post.date} 
+                </p>
+              </div>
+              <div class="post-comment-counts">
+                <a href="{$post.url}#post-comment">
+                  {?$_显示点点评论}<span class="pull-right badge ds-thread-count">{$post.notes_count}热度</span>{/$_显示点点评论}
+                  {?$_显示多说评论}<span class="pull-right badge ds-thread-count" data-thread-key="{$post.id}">暂无评论</span>{/$_显示多说评论}
+                </a>
+              </div>
+            </div>
+            <!-- / post-title -->
+            <!-- post-content -->
+            {?view.list}
+            <!-- list-page -->
+            <div class="post-content clearfix">
+              {?post.text}
+              <!-- TEXT -->
+              <div class="post-thumbnail pull-left">
+                <a href="{$post.url}" class="thumbnail" title="{$text.title}">
+                  {?text.thumbnail}
+                  <img src="{$text.thumbnail.250.src}"  title="{$text.title}" >
+                  {/text.thumbnail}
+                  {?!text.thumbnail}
+                  <img src="{$_默认缩略图}" title="{$text.title}" >
+                  {/!text.thumbnail}
+                </a>
+              </div>
+              <div class="post-summary">
+                <p>{$text.summary|nohtml_truncate:"180":"..."}</p>
+              </div>
+              {/post.text}
+
+              {?post.photo}
+              <!-- PHOTO -->
+              <div class="post-thumbnail pull-left">
+                <a href="{$post.url}" class="thumbnail" title="{$photos.title|nohtml}">
+                  {?photos.single}
+                  {?loop:photos}
+                  <img src="{$photo.250.src}" alt="{$photo.alt}" >
+                  {/loop:photos}
+                  {/photos.single}
+
+                  {?photos.multi}
+                  {?loop:photos}
+                  {?photos@first}
+                  <img src="{$photo.250.src}" alt="{$photo.alt}" >
+                  {/photos@first}
+                  {/loop:photos}
+                  {/photos.multi}
+                </a>
+              </div>
+              <div class="post-summary">
+                <p>{$photos.description|nohtml_truncate:"180":"..."}</p>
+              </div>
+              {/post.photo}
+
+
+              {?post.link}
+              <!-- LINK -->
+              <div class="post-thumbnail pull-left">
+                <a href="{$post.url}" class="thumbnail" title="{$link.title}">
+                  <img src="{$_默认缩略图}" alt="{$link.title}">>
+                </a>
+              </div>
+              <div class="post-summary">
+                <p>
+                  <a href="{$link.url}" title="{$link.description}">{$link.title}</a>
+                </p>
+                <p>{$link.description|nohtml_truncate:"180":"..."}</p>
+              </div>
+              {/post.link}
+
+
+              {?post.audio}
+              <!-- AUDIO -->
+              <div class="post-thumbnail pull-left">
+                <a href="{$post.url}" class="thumbnail" title="{$audio.description|nohtml}">
+                  <img src="{$audio.cover_185}" alt="{$audio.description|nohtml}">
+                </a>
+              </div>
+              <div class="post-summary">
+                <div>{$audio.player}</div>
+                <p>{$audio.description|nohtml_truncate:"180":"..."}</p>       
+              </div>
+              {/post.audio}
+
+
+              {?post.video}
+              <!-- VIDEO -->
+              <div class="post-thumbnail pull-left">
+                <a href="{$post.url}" class="thumbnail" title="{$video.description|nohtml}">
+                  <img src="{$video.cover}">
+                </a>
+              </div>
+              <div class="post-summary">
+                <p>{$video.description|nohtml_truncate:"180":"..."}</p>
+                <p>{$video.player}</p>
+              </div>
+              {/post.video}
+            </div>
+            <!-- / list-page -->
+            {/view.list}
+
+            {?view.post}
+            <!-- post-page -->
+            <div class="post-content clearfix">
                 {?post.text}
-                {$text.content}
+                <!-- TEXT -->
+                <p>
+                  {$text.content}
+                </p>
                 {/post.text}
-                <!-- PHOTO -->
+
                 {?post.photo}
+                <!-- PHOTO -->
                 <p>
                   {$photos.description}
                 </p>
                 {?photos.single}
                 {?loop:photos}
                 <p>
-                  <img src="{$photo.800.src}" alt="">
+                  <img src="{$photo.800.src}" alt="{$photos.description}">
                 </p>
                 {$photo.description}
                 {/loop:photos}
@@ -453,123 +563,129 @@
                 {?photos.multi}
                 {?loop:photos}
                 <p>
-                  <img src="{$photo.800.src}" alt="">
+                  <img src="{$photo.800.src}" alt="{$photo.description}">
                 </p>
                 {$photo.description}
                 {/loop:photos}
                 {/photos.multi}
                 {/post.photo}
-                <!-- LINK -->
+
+
                 {?post.link}
+                <!-- LINK -->
                 
                 {/post.link}
-                <!-- AUDIO -->
                 {?post.audio}
+                <!-- AUDIO -->
                 <p>{$audio.player}</p>
                 <p>{$audio.description}</p>
                 {/post.audio}
-                <!-- VIDEO -->
+
+
                 {?post.video}
+                <!-- VIDEO -->
                 <p>{$video.player}</p>
                 <p>{$video.description}</p>
-                {/post.video}              
-              </p>
-          </div>
-          {/view.post}
+                {/post.video}                            
+            </div>
+            <!-- / post-page -->
+            {/view.post}
+            <!-- / post-content -->
 
-          <!-- post-tags -->
-          <div class="post-meta clearfix">
-            <div class="pull-left">
-              {?post.tag}
-              <p>
+            <!-- post-meta -->
+            <div class="post-meta clearfix">
+              <div class="pull-left">
+                {?post.tag}
                 <h6> <i class="icon-tags"></i>
                   {?loop:post.tags}
-                  <a href="{$post.tag.url}" title="{$post.tag.name|nohtml}"> {$post.tag.name} </a> 
+                  <a href="{$post.tag.url}" title="{$post.tag.name}"> {$post.tag.name} </a> 
                   {/loop:post.tags}
                 </h6>
-              </p>
-              {/post.tag}              
-            </div>
-            <div class="pull-right read-more">
+                {/post.tag}
+              </div>
               {?view.list}
-              <!-- TEXT -->
-              {?post.text}
-              <a class="btn pull-right" href="{$post.url}" title="{$text.title|nohtml}">阅读全文&raquo;</a>
-              {/post.text}
-              <!-- PHOTO -->
-              {?post.photo}
-              <a class="btn pull-right" href="{$post.url}" title="{$photos.title|nohtml}">阅读全文&raquo;</a>
-              {/post.photo}
-              <!-- LINK -->
-              {?post.link}
-              <a class="btn pull-right" href="{$post.url}" title="{$link.title|nohtml}">阅读全文&raquo;</a>
-              {/post.link}
-              <!-- AUDIO -->
-              {?post.audio}
-              <a class="btn pull-right" href="{$post.url}" title="{$audio.description|nohtml}">阅读全文&raquo;</a>
-              {/post.audio}
-              <!-- VIDEO -->
-              {?post.video}
-              <a class="btn pull-right" href="{$post.url}" title="{$video.description|nohtml}">阅读全文&raquo;</a>
-              {/post.video}
+              <div class="pull-right read-more">
+                <a class="btn pull-right" href="{$post.url}" title="{?post.text}{$text.title|nohtml}{/post.text}{?post.photo}{$photos.title|nohtml}{/post.photo}{?post.link}{$link.title|nohtml}{/post.link}{?post.audio}{$audio.song|nohtml}{/post.audio}{?post.video}{$video.description|nohtml}{/post.video}">阅读全文&raquo;</a>
+              </div>
               {/view.list}
             </div>
-          </div>
-        </div>
+            <!-- / post-meta -->
 
-        {?view.post}
-        <!-- post-wumii -->
-        <div class="post-wumii clearfix">
-            <? require('dd://assets/2012/0920/1611415Cc6/wumii.coffee').wumii({num:"5",mode:"3",title_length:"30"}) ?>
-        </div>
-        <!-- post-aboutme -->
-        <div class="post-aboutme clearfix box">
-          <div class="post-author pull-left">
-            <a href="{$global.url}" class="" title="{$author.description}">
-              <img src="{$global.cover_64}" class="img-polaroid" alt="{$author.description}">
-            </a>
+            {?view.post}
+            {?$_显示无觅相关文章}
+            <!-- post-wumii -->
+            <div class="post-wumii clearfix">
+              <? require('dd://assets/2012/0920/1611415Cc6/wumii.coffee').wumii({num:"5",mode:"3",title_length:"30"}) ?>
+            </div>
+            <!-- / post-wumii -->
+            {/$_显示无觅相关文章}
+
+            <!-- post-pagination -->
+            <div class="post-pagination clearfix">
+              {?pagination}
+                <ul class="pager">
+                  {?pagination.prev}
+                  <li>
+                    <a href="{$pagination.prev.url}">&larr; 前一篇</a>
+                  </li>
+                  {/pagination.prev}
+                  {?pagination.next}
+                  <li>
+                    <a href="{$pagination.next.url}">后一篇&rarr;</a>
+                  </li>
+                  {/pagination.next}
+                </ul>
+                {/pagination}
+            </div>
+            <!-- / post-pagination -->
+
+
+            {/view.post}
           </div>
-          <div class="post-author-desc">
-            <div>作者: <a href="{$global.url}" title="{$author.description}">大鹏</a></div>
-            <div>{$author.description}</div>
+          <!-- / post -->
+
+          {?view.post}
+          <!-- post-copyright -->
+          <div class="post-copyright box clearfix">
+            <div class="pull-left post-author">
+              <a href="{$global.url}" class="" title="{$author.description}}">
+                <img src="{$global.cover_64}" class="img-polaroid" alt="{$author.description|nohtml}}">
+              </a>
+            </div>
+            <div class="post-author-desc">
+              <div>作者: <a href="{$global.url}" title="{$author.description|nohtml}}">{?$_作者名称}{$_作者名称}{/$_作者名称}{?!$_作者名称}{$global.name}{/!$_作者名称}</a></div>
+              <div>{$author.description}</div>
+            </div>
           </div>
-        </div>
-        <!-- post-pagination -->
-        <div class="clearfix post-pagination">
-            <br />
-            {?pagination}
-              <ul class="pager">
-            {?pagination.prev}
-                <li>
-                  <a href="{$pagination.prev.url}">&larr; 前一篇</a>
-                </li>
-            {/pagination.prev}
-            {?pagination.next}
-                <li>
-                  <a href="{$pagination.next.url}">后一篇&rarr;</a>
-                </li>
-            {/pagination.next}
-              </ul>
-            {/pagination}
-        </div>
-        <!-- post-comment -->
-        <div class="clearfix post-comment" id="post-comment">
+          <!-- / post-copyright -->
+          
+
+          <!-- post-comment -->
+          <div class="post-comment box clearfix" id="post-comment">
+            {?$_显示多说评论}
             <!-- Duoshuo Comment BEGIN -->
-      <div class="ds-thread" data-thread-key="{$post.id}" 
-              data-title="" data-author-key="627052" data-url="{$post.url}"></div>
-              
+              <div class="ds-thread" data-thread-key="{$post.id}" data-title="{?post.text}{$text.title|nohtml}{/post.text}{?post.photo}{$photos.title|nohtml}{/post.photo}{?post.link}{$link.title|nohtml}{/post.link}{?post.audio}{$audio.description|nohtml}{/post.audio}{?post.video}{$video.description|nohtml}{/post.video}" data-author-key="627052" data-url="{$post.url}"></div>
             <!-- Duoshuo Comment END -->
-        </div>
+            {/$_显示多说评论}
+            {?$_显示点点评论}
+            {#sys:notes.text_color|value:"#040404"}
+            {#sys:notes.blockquote_color|value:"#E7EAEE"}
+            {#sys:notes.block_bg_color|value:"#fff"}
+            {#sys:notes.block_border_color|value:"#C7CACC"}
+            {#sys:notes.operation_link_color|value:"#999999"}
+            {#sys:notes.enable_border_radius|value:"true"}
+            {#sys:notes.width|value:"730"}
+            {$post.notes}
+            {/$_显示点点评论}
+          </div>
+          <!-- / post-comment -->
 
-        {/view.post}
-        {/loop:posts}
+          {/view.post}
+          {/loop:posts}
 
-
-
-        <!-- pagination -->
-        {?view.list}
-        <div class="clearfix post-pagination">
-          <div class="pagination pagination-centered">
+          {?view.list}
+          <!-- pagination -->
+          <div class="pagination pagination-centered clearfix">
               <ul>
                   {?pagination}
                   {?!$pagination.current_number|eq:"1"}
@@ -613,85 +729,133 @@
                   {/pagination.next}
                   {/pagination}
               </ul>
-           
           </div>
-        </div>
-        {/view.list}
-        {/posts}
-
-
-
-    </div>
-    <!-- /content         -->
-    </div>
-    <div class="span4 " id="sidebar">
-        <div class="weget box">
-      <ul id="myTab" class="nav nav-tabs">
-         <li class="active"><a href="#tags" data-toggle="tab">标签分类</a></li>
-         <li><a href="#newest" data-toggle="tab">最新文章</a></li>
-         <li><a href="#hotest" data-toggle="tab">最热文章</a></li>
-      </ul>
-      <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="tags">
-            <ul class="nav nav-pills">
-            {?tags}
-            {?loop:tags}
-        <li><a href="{$tag.url}" title="{$tag.name}">{$tag.name}</a></li>
-            {/loop:tags}
-            {/tags}
-          </ul>          
-        </div>
-        <div class="tab-pane fade" id="newest">
-        </div>
-        <div class="tab-pane fade" id="hotest"></div>
-        <div class="tab-pane fade" id="hotmonth">
+          <!-- / pagination -->
+          {/view.list}
+          {/posts}
         </div>
       </div>
-        </div>
+      <!-- / mainContent -->
+      <!-- sidebar -->
+      <div class="span4 " id="sidebar">
 
+        {?$_侧边栏AD1-TITLE}
+        <!-- weget theme-->
+        <div class="weget box">
+          <h5>{$_侧边栏AD1-TITLE}</h5>
+          {$_侧边栏AD1-CONTENT}
+        </div>
+        <!-- / weget -->
+        {/$_侧边栏AD1-TITLE}
+
+        <!-- weget tab -->
+        <div class="weget box">
+          <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#tags" data-toggle="tab">标签分类</a></li>
+            <li><a href="#newest" data-toggle="tab">最新文章</a></li>
+            <li><a href="#hotest" data-toggle="tab">最热文章</a></li>
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="tags">
+              <ul class="nav nav-pills">
+                {?tags}
+                {?loop:tags}
+                <li><a href="{$tag.url}" title="{$tag.name|nohtml}">{$tag.name}</a></li>
+                {/loop:tags}
+                {/tags}
+              </ul>
+            </div>
+            <div class="tab-pane fade" id="newest"></div>
+            <div class="tab-pane fade" id="hotest"></div>
+            <div class="tab-pane fade" id="hotmonth"></div>
+          </div>
+        </div>
+        <!-- / weget tab -->
+
+        {?$_显示多说评论}
+        <!-- weget duoshuo -->
         <div class="weget box">
           <h5>最新评论</h5>
           <div id="lastcomment">
           <ul class="ds-recent-comments" data-num-items="5" data-show-title="1" data-excerpt-length="17" data-show-avatars="1"></ul>                
           </div>
         </div>
+        <!-- / weget duoshuo -->
+        {/$_显示多说评论}
 
 
-        <div class="weget box da_rollbox">
+        <!-- frend links -->
+        <div class="weget box">
           <h5>友情链接</h5>
           <div id="links">
             <ul>
-              <li><a href="http://mag.5xue.com" title="希望泉杂志">希望泉杂志</a></li>            
+              {$_友情链接}     
             </ul>                
           </div>
         </div>
+        <!-- / frend links -->
 
 
+        {?$_侧边栏AD2-TITLE}
+        <!-- weget  AD-->
+        <div class="weget box">
+          <h5>{$_侧边栏AD2-TITLE}</h5>
+          {$_侧边栏AD2-CONTENT}
+        </div>
+        <!-- / weget -->
+        {/$_侧边栏AD2-TITLE}
+
+
+        {?$_侧边栏AD3-TITLE}
+        <!-- weget  AD-->
+        <div class="weget box">
+          <h5>{$_侧边栏AD3-TITLE}</h5>
+          {$_侧边栏AD3-CONTENT}
+        </div>
+        <!-- / weget -->
+        {/$_侧边栏AD3-TITLE}
+
+      </div>
+      <!-- / sidebar -->
     </div>
-  </div>
+
+    <!-- footer -->
     <footer class="footer">
       <p>
-        @2008-1012 <a href="{$global.url}" title="{$global.description}"> {$global.name}</a> |  
-        Powered By <a href="http://diandian.com" title="点点,让博客从此简单!">点点网</a> | 
-        Designed by <a href="http://beardnote.com/" title="胡子笔记的主人!">大鹏</a>
+        @2012 <a href="{$global.url}" title="{$global.description|nohtml}}"> {$global.name}</a> |  
+        Powered By <a href="http://diandian.com" target="_blank" title="点点,让博客从此简单!">点点网</a> | 
+        Designed by <a href="http://beardnote.com/" target="_blank" title="胡子笔记的主人!">大鹏</a>
       </p>
     </footer>
-</div>
+    <!-- / footer -->
+  </div>
+  <!--  / container -->
 
-<!--返回顶部按钮-->
+<!--backtop-->
 <div data-widget="backtop"></div>
+<!-- / backtop-->
 
-<!-- 最新文章 最热文章 -->
-<script type="text/javascript">
-    $(document).ready(function(){ 
-        $("#newest").load("{$global.url}/do/latestpost.html?_posts[limit]=10");
-        $("#hotest").load("{$global.url}/do/latestpost.html?_posts[limit]=10&_posts[order_by]=notes"); 
-    }); 
-</script> 
+{?$_显示底部公告栏}
+<!-- 底部公告栏 -->
+<div id="notice">
+    <div class="close">
+        <a href="javascript:void(0)" onclick="$('#notice').slideUp('slow');" title="关闭">X</a>
+    </div>
+    <div id="feed">
+        <a href="<?= dian.data.meta.rss ?>" title="欢迎订阅本站" class="image"><img src="http://x.libdd.com/farm1/2893f5/161db1f1/feed.gif" /></a>
+    </div>
+    <div class="bulletin">
+        <ul>
+            {$_公告内容}
+        </ul>
+    </div>
+</div>
+{/$_显示底部公告栏}
 
+{?$_显示多说评论}
 <!-- 多说评论 -->
 <script type="text/javascript">
-var duoshuoQuery = {short_name:"beardnote"};
+var duoshuoQuery = {short_name:"{$_多说域名}"};
 (function() {
   var ds = document.createElement('script');
   ds.type = 'text/javascript';ds.async = true;
@@ -701,11 +865,14 @@ var duoshuoQuery = {short_name:"beardnote"};
   || document.getElementsByTagName('body')[0]).appendChild(ds);
 })();
 </script>
+{/$_显示多说评论}
 
+
+{?$_google统计代码}
 <!-- google analytics -->
 <script type="text/javascript">
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-35533950-1']);
+  _gaq.push(['_setAccount', '{$_google统计代码}']);
   _gaq.push(['_trackPageview']);
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
@@ -713,11 +880,9 @@ var duoshuoQuery = {short_name:"beardnote"};
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
-
+{/$_google统计代码}
 </body>
 </html>
-
-
 
 
 
