@@ -1,3 +1,6 @@
-*.json
+.gitnotedb
 .gitnote
 .gitnote.db
+gitnote.sqlite3
+gitnote.sqlite3-shm
+gitnote.sqlite3-wal
