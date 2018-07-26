@@ -1,6 +1,7 @@
 .gitnotedb
 .gitnote
 .gitnote.db
+.gitnotetask.db
 gitnote.sqlite3
 gitnote.sqlite3-shm
 gitnote.sqlite3-wal
