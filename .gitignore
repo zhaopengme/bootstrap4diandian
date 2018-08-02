@@ -5,5 +5,3 @@
 gitnote.sqlite3
 gitnote.sqlite3-shm
 gitnote.sqlite3-wal
-gitnote.sqlite3-wal
-*.json
