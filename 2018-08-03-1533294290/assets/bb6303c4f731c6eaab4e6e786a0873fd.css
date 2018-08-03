@@ -1,0 +1,331 @@
+
+@font-face {font-family: "iconfont";
+  src: url('ebf9b6648257e3ce36accf519d4f2e67.eot'); /* IE9*/
+  src: url('50319c1799e8ea4a098ace61c412a7b0.eot') format('embedded-opentype'), /* IE6-IE8 */
+  url('5dad3c1665e82fd2c4ba9b16886c0f77.woff') format('woff'), /* chrome, firefox */
+  url('f3e23f15d3696a44e073db29640ac7e1.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('f92b72e607204db5287fb8d5f45fede6.svg') format('svg'); /* iOS 4.1- */
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 24px;
+  font-style: normal !important;
+  font-weight: normal !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.os-login-alipay:before { content: "\e646"; }
+.os-login-alipay { color: rgb(0, 161, 240); }
+.os-login-amazon:before { content: "\e616"; }
+.os-login-amazon { color: rgb(40, 60, 100); }
+.os-login-baidu:before { content: "\e602"; }
+.os-login-baidu { color: rgb(41, 50, 225); }
+.os-login-douban:before { content: "\e6e8"; }
+.os-login-douban { color: rgb(46, 150, 61); }
+.os-login-facebook:before { content: "\e601"; }
+.os-login-facebook { color: rgb(57, 86, 157); }
+.os-login-github:before { content: "\e698"; }
+.os-login-github { color: rgb(43, 65, 77); }
+.os-login-google:before { content: "\e755"; }
+.os-login-google { color: rgb(222, 67, 48); }
+.os-login-instagram:before { content: "\e609"; }
+.os-login-instagram { color: rgb(228, 0, 127); }
+.os-login-linkedin:before { content: "\e7ea"; }
+.os-login-linkedin { color: rgb(61, 128, 178); }
+.os-login-live:before { content: "\e680"; }
+.os-login-live { color: rgb(0, 65, 133); }
+.os-login-microsoft:before { content: "\e680"; }
+.os-login-microsoft { color: rgb(0, 65, 133); }
+.os-login-oschina:before { content: "\e600"; }
+.os-login-oschina { color: rgb(61, 171, 83); }
+.os-login-pinterest:before { content: "\e619"; }
+.os-login-pinterest { color: rgb(189, 27, 54); }
+.os-login-qq:before { content: "\e630"; }
+.os-login-qq { color: rgb(42, 168, 222); }
+.os-login-reddit:before { content: "\e7d8"; }
+.os-login-reddit { color: rgb(255, 64, 6); }
+.os-login-sina:before { content: "\e62e"; }
+.os-login-sina { color: rgb(250, 125, 60); }
+.os-login-weibo:before { content: "\e62e"; }
+.os-login-weibo { color: rgb(250, 125, 60); }
+.os-login-taobao:before { content: "\e8dd"; }
+.os-login-taobao { color: rgb(255, 68, 0); }
+.os-login-twitter:before { content: "\e711"; }
+.os-login-twitter { color: rgb(29, 161, 242); }
+.os-login-wechat:before { content: "\e633"; }
+.os-login-wechat { color: rgb(60, 176, 53); }
+.os-login-wechat_mp:before { content: "\e633"; }
+.os-login-wechat_mp { color: rgb(60, 176, 53); }
+.os-login-xiaomi:before { content: "\e606"; }
+.os-login-xiaomi { color: rgb(255, 103, 0); }
+.os-login-wordpress:before { content: "\e94a"; }
+.os-login-wordpress { color: rgb(0, 134, 192); }
+.os-login-line:before { content: "\e60e"; }
+.os-login-line { color: rgb(0, 185, 0); }
+.os-share-facebook:before { content: "\3433"; }
+.os-share-facebook { color: rgb(57, 86, 157); }
+.os-share-google:before { content: "\e823"; }
+.os-share-google { color: rgb(222, 67, 48); }
+.os-share-linkedin:before { content: "\e60d"; }
+.os-share-linkedin { color: rgb(61, 128, 178); }
+.os-share-pinterest:before { content: "\e8a6"; }
+.os-share-pinterest { color: rgb(189, 27, 54); }
+.os-share-qq:before { content: "\e627"; }
+.os-share-qq { color: rgb(42, 168, 222); }
+.os-share-qqzone:before { content: "\e608"; }
+.os-share-qqzone { color: rgb(236, 192, 6); }
+.os-share-reddit:before { content: "\ebbd"; }
+.os-share-reddit { color: rgb(255, 64, 6); }
+.os-share-twitter:before { content: "\e699"; }
+.os-share-twitter { color: rgb(29, 161, 242); }
+.os-share-wechat:before { content: "\e64c"; }
+.os-share-wechat { color: rgb(60, 176, 53); }
+.os-share-weibo:before { content: "\e61f"; }
+.os-share-weibo { color: rgb(250, 125, 60); }
+.os-login-tumblr:before { content: "\e6e3"; }
+.os-login-tumblr { color: rgb(54, 70, 93); }
+.os-share-tumblr:before { content: "\e61e"; }
+.os-share-tumblr { color: rgb(54, 70, 93); }
+.os-login-xing:before { content: "\e84c"; }
+.os-login-xing { color: rgb(0, 101, 103); }
+.os-share-xing:before { content: "\e84d"; }
+.os-share-xing { color: rgb(0, 101, 103); }
+.os-login-vk:before { content: "\e6cd"; }
+.os-login-vk { color: rgb(80, 114, 153); }
+.os-share-vk:before { content: "\e62d"; }
+.os-share-vk { color: rgb(80, 114, 153); }
+.os-share-telegram:before { content: "\e715"; }
+.os-share-telegram { color: rgb(44, 159, 216); }
+.os-share-whatsapp:before { content: "\e621"; }
+.os-share-whatsapp { color: rgb(0, 230, 118); }
+.os-share-line:before { content: "\e641"; }
+.os-share-line { color: rgb(0, 185, 0); }
+.os-login-sms:before { content: "\e6ae"; }
+.os-login-sms { color: rgb(80,114,153); }
+.os-login-mobile:before { content: "\e6ae"; }
+.os-login-mobile { color: rgb(80,114,153); }
+.os-login-mail:before { content: "\e635"; }
+.os-login-mail { color: rgb(214, 73, 55); }
+.os-login-email:before { content: "\e635"; }
+.os-login-email { color: rgb(214, 73, 55); }
+
+.os-share-youdao:before { content: "\e623"; }
+.os-share-youdao { color: rgb(73, 192, 251); }
+.os-share-evernote:before { content: "\e620"; }
+.os-share-evernote { color: rgb(57, 183, 94); }
+.os-share-douban:before { content: "\e796"; }
+.os-share-douban { color: rgb(67, 148, 78); }
+.os-share-huaban:before { content: "\e607"; }
+.os-share-huaban { color: rgb(230, 99, 106); }
+
+#loginform .os-login-box {
+  margin-bottom: 15px;
+}
+.os-bind-box .os-icon-bind {
+  filter:alpha(opacity=20);
+  -moz-opacity:0.2;
+  -khtml-opacity: 0.2;
+  opacity: 0.2;
+}
+.os-bind-box .os-icon-bind:hover {
+  filter:alpha(opacity=60);
+  -moz-opacity:0.6;
+  -khtml-opacity: 0.6;
+  opacity: 0.6;
+}
+.os-show {
+  display: block;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+  border-left: 2px solid gray;
+}
+.os-hide {
+  color: #aaa;
+  font-style: italic;
+  font-weight: bold;
+}
+.os-icon-gray {
+  color: #666;
+}
+.os-preview-box {
+  width: 600px;
+  padding: 8px 13px;
+  border: 1px solid #ccc;
+  display: inline-block;
+}
+
+#error-page {
+  min-height: 320px;
+}
+#error-page h1 {
+  margin-top: -8px;
+}
+.os-user-form {
+  font-size: 14px;
+  position: relative;
+}
+.os-user-form .line {
+  position: absolute;
+  background: #ccc;
+  width: 1px;
+  height: 120px;
+  left: 50%;
+  top: 60px;
+}
+.os-user-form .right {
+  float: right;
+  margin-right: 40px;
+}
+.os-user-form input.err {
+  border: #de9b2a solid 2px;
+  outline: none;
+}
+.os-user-form div.err,.os-user-form p.err,.os-user-form span.err {
+  color: #de9b2a;
+}
+.os-user-form .ok {
+}
+.os-user-form .label {
+  margin: 20px 0 10px;
+}
+.os-user-form .desc,
+.os-user-form .input {
+  font-size: 12px;
+  margin: 3px 0 5px
+}
+.os-user-form .input input {
+  padding: 5px;
+}
+.os-user-form .avatar img {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  width: 100px;
+  height: 100px;
+}
+.os-user-form p {
+  margin: 20px 0 20px;
+}
+.os-user-form .button-primary .button {
+  width: 400px;
+  margin: 4px 0 6px;
+  text-align: center;
+}
+#os_wechat_login_qrcode iframe{
+  width: 190px;
+  height: 190px;
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+@viewport {
+  width: device-width;
+}
+@media screen and (max-width: 600px) {
+  #error-page {
+    margin: 0;
+  }
+  .os-user-form .right {
+    float: none;
+  }
+  .os-user-form .input input {
+    width: 85%;
+  }
+  .os-user-form .button-primary .button {
+    width: 90%;
+  }
+}
+
+#os-popup-overlay {
+  width: 100%;
+  height: 100%;
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;
+  background: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3000;
+  display: none;
+}
+#os-popup-box {
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  color: #666;
+  background: #fff;
+  position: fixed;
+  z-index: 5000;
+  display: none;
+  cursor: pointer;
+}
+#os-popup-title {
+  font-weight: bold;
+  padding: 10px;
+  font-size: 14px;
+  border-bottom: #ccc solid 1px;
+  width: 280px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
+}
+#os-popup-title .os-icon{
+  float: left;
+  margin: 0px 5px 0px 1px;
+  line-height: 100%;
+}
+#os-popup-title span {
+  line-height: 100%;
+  font-size: 18px;
+  padding: 0px 2px 0px 5px;
+  float: right;
+}
+#os-popup-content {
+  margin: 25px;
+  line-height: 0px;
+}
+
+/*===CUSTOMIZE UNDER===*/
+
+.os-icon { 
+  margin: 3px 5px 3px 1px;
+  display: inline-block;
+} 
+.os-login-box {
+  clear: both;
+  line-height: 36px;
+}
+.os-share-box {
+  clear: both;
+  line-height: 30px;
+}
+.os-login-box .os-icon {
+  cursor: pointer;
+  font-size: 32px;
+}
+.os-share-box .os-icon {
+  cursor: pointer;
+  font-size: 25px;
+}
+.os-login-title {
+  
+}
+.os-share-title {
+  
+}
+.os-login-widget {
+
+}
+.os-share-widget {
+
+}
