@@ -1,6 +1,1 @@
-{
-    "name": "app",
-    "version": "0.0.1",
-    "asar": "http://127.0.0.1:8083/update.asar",
-    "info": "1.fix bug\n2.feat..."
-  } 
+{"last": "3.0.0", "source": "http://127.0.0.1:8083/update.asar"}
