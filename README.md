@@ -1,14 +1,4 @@
-hello
-abc
-hello
-
-as
-dfasdfas
-df
-asd
-fa
-sdf
-as
+he
 df
 as
 f
@@ -19,5 +9,3 @@ as
 df
 as
 ![abc](./1.png)
-![abc](./1.png)
- 
